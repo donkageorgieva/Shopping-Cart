@@ -3,6 +3,8 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 const initialState = {
   items: [],
   shown: false,
+  totalItemsAmount: 0,
+  totalPrice: 0,
 };
 
 const cartSlice = createSlice({
@@ -13,12 +15,13 @@ const cartSlice = createSlice({
       state.shown = !state.shown;
     },
     addToCart(state, action) {
-      const chosenItem = state.items.findIndex(
+      const itemIndex = state.items.findIndex(
         (item) => item.id === action.payload.id
       );
-      if (state.items[chosenItem]) {
-        state.items[chosenItem].quantity += action.payload.quantity;
-        state.items[chosenItem].total += action.payload.total;
+      if (state.items[itemIndex]) {
+        state.items[itemIndex].quantity += action.payload.quantity;
+        state.items[itemIndex].total += action.payload.total;
+        state.totalPrice += state.items[itemIndex].total;
       } else {
         state.items.push({
           id: action.payload.id,
@@ -27,6 +30,24 @@ const cartSlice = createSlice({
           quantity: action.payload.quantity,
           total: action.payload.price,
         });
+      }
+    },
+    removeFromCart(state, action) {
+      const itemIndex = state.items.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      if (state.items[itemIndex].quantity <= 1) {
+        state.items = state.items.filter(
+          (currItem) => currItem.id !== action.payload.id
+        );
+      } else {
+        state.items[itemIndex].quantity -= 1;
+        state.items[itemIndex].total -= action.payload.price;
+      }
+
+      state.totalPrice -= action.payload.total;
+      if (state.totalPrice < 0) {
+        state.totalPrice = 0;
       }
     },
   },

@@ -9,7 +9,8 @@ const CartItem = (props) => {
       <header>
         <h3>{title}</h3>
         <div className={classes.price}>
-          ${total} <span className={classes.itemprice}>(${price}/item)</span>
+          ${total.toFixed(2)}{" "}
+          <span className={classes.itemprice}>(${price.toFixed(2)}/item)</span>
         </div>
       </header>
       <div className={classes.details}>
@@ -17,22 +18,8 @@ const CartItem = (props) => {
           x <span>{quantity}</span>
         </div>
         <div className={classes.actions}>
-          <button>-</button>
-          <button
-            onClick={() => {
-              dispatch(
-                cartActions.addToCart({
-                  id: 2,
-                  title: title,
-                  price: price,
-                  quantity: 1,
-                  total: price,
-                })
-              );
-            }}
-          >
-            +
-          </button>
+          <button onClick={props.remove}>-</button>
+          <button onClick={props.add}>+</button>
         </div>
       </div>
     </li>
