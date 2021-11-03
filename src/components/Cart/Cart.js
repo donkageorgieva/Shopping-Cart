@@ -14,22 +14,15 @@ const Cart = (props) => {
   const itemsArray = useSelector((state) => state.items);
   const total = useSelector((state) => state.totalPrice);
   const cartItems = itemsArray.map((item) => {
-    const chosenItem = {
-      title: item.title,
-      quantity: item.quantity,
-      total: item.total,
-      price: item.price,
-      id: item.id,
-    };
     return (
       <CartItem
         key={item.title}
-        item={chosenItem}
+        item={item}
         add={() => {
-          addHandler(chosenItem);
+          addHandler(item);
         }}
         remove={() => {
-          removeHandler(chosenItem);
+          removeHandler(item);
         }}
       />
     );

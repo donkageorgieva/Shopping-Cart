@@ -1,8 +1,10 @@
 import classes from "./CartButton.module.css";
 import { cartActions } from "../../store/cart";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 const CartButton = (props) => {
   const dispatch = useDispatch();
+  const cartItemsAmount = useSelector((state) => state.totalItemsAmount);
   return (
     <button
       className={classes.button}
@@ -12,7 +14,7 @@ const CartButton = (props) => {
       }}
     >
       <span>My Cart</span>
-      <span className={classes.badge}>1</span>
+      <span className={classes.badge}>{cartItemsAmount}</span>
     </button>
   );
 };
