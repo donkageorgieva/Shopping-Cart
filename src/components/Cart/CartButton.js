@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const CartButton = (props) => {
   const dispatch = useDispatch();
-  const cartItemsAmount = useSelector((state) => state.totalItemsAmount);
+  const cartItemsAmount = useSelector((state) => state.cart.totalItemsAmount);
   return (
     <button
       className={classes.button}

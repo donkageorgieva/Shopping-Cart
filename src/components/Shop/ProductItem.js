@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 const ProductItem = (props) => {
   const { title, price, description } = props;
   const dispatch = useDispatch();
-  const items = useSelector((state) => state.items);
+  const items = useSelector((state) => state.cart.items);
   return (
     <li className={classes.item}>
       <Card>

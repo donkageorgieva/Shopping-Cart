@@ -11,8 +11,8 @@ const Cart = (props) => {
     dispatch(cartActions.removeFromCart(item));
   };
   const dispatch = useDispatch();
-  const itemsArray = useSelector((state) => state.items);
-  const total = useSelector((state) => state.totalPrice);
+  const itemsArray = useSelector((state) => state.cart.items);
+  const total = useSelector((state) => state.cart.totalPrice);
   const cartItems = itemsArray.map((item) => {
     return (
       <CartItem
