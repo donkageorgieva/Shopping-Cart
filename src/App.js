@@ -6,7 +6,6 @@ function App() {
   return (
     <Provider store={store}>
       <Layout>
-        {/* <Cart /> */}
         <Products />
       </Layout>
     </Provider>
