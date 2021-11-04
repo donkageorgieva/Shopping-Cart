@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const uiSlice = createSlice({
-  name: "ui",
+  name: "notification",
   initialState: { notification: null },
   reducers: {
     toggleNotification(state, action) {
