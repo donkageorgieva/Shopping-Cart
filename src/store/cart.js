@@ -1,5 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import uiSlice from "./ui-slice";
+import { uiActions } from "./ui-slice";
 const initialState = {
   items: [],
   shown: false,
@@ -11,6 +12,11 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    replaceCart(state, action) {
+      state.totalItemsAmount = action.payload.totalItemsAmount;
+      state.totalPrice = action.payload.totalItemsAmount;
+      state.items = action.payload.items;
+    },
     toggleCart(state) {
       state.shown = !state.shown;
     },
